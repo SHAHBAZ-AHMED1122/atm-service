@@ -13,7 +13,7 @@ if (answer.pin === myPin) {
         name: "action",
         message: "please select option",
         type: "list",
-        choices: ["check balance", "withdraw"],
+        choices: ["check balance", "withdraw", "deposit"],
     });
     if (operationAns.action === "withdraw") {
         let amountAns = await inquirer.prompt({
@@ -30,6 +30,15 @@ if (answer.pin === myPin) {
         }
     }
     if (operationAns.action === "check balance") {
+        console.log("your balance is", myBalance);
+    }
+    if (operationAns.action === "deposit") {
+        let amountAns = await inquirer.prompt({
+            name: "amount",
+            message: "how much amount do you want to deposit",
+            type: "number",
+        });
+        myBalance += amountAns.amount;
         console.log("your balance is", myBalance);
     }
 }

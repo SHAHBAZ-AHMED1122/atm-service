@@ -13,11 +13,11 @@ const answer = await inquirer.prompt(
 
 if (answer.pin === myPin) {
   console.log("correct pin");
-  const operationAns = await inquirer.prompt({
+      const operationAns = await inquirer.prompt({
     name: "action",
     message: "please select option",
     type: "list",
-    choices: ["check balance", "withdraw"],
+    choices: ["check balance", "withdraw", "deposit"],
   });
 
   if (operationAns.action === "withdraw") {
@@ -36,6 +36,22 @@ if (answer.pin === myPin) {
   if (operationAns.action === "check balance") {
     console.log("your balance is", myBalance);
   }
-} else {
-  console.log("incorrect pin");
+
+  if(operationAns.action === "deposit"){
+    let amountAns = await inquirer.prompt({
+      name: "amount",
+      message: "how much amount do you want to deposit",
+      type: "number",
+    });
+    myBalance += amountAns.amount;
+    console.log("your balance is", myBalance);
   }
+
+  
+}
+else
+{ console.log("incorrect pin");
+}
+
+ 
+ 
